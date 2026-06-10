@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In Computer Organization and Architecture, a **bus** is a communication pathway that transfers data between different components of a computer system.
+In Computer Organization and Architecture, a bus is a communication pathway that transfers data between different components of a computer system.
 
 ### Components Connected by Buses
 - CPU
@@ -10,17 +10,17 @@ In Computer Organization and Architecture, a **bus** is a communication pathway 
 - Input devices
 - Output devices
 
-**Important:** Without buses, these components cannot communicate with each other.
+Important: Without buses, these components cannot communicate with each other.
 
 ---
 
 ## Main Types of Buses
 
-There are **three major types** of buses in a computer system:
+There are three major types of buses in a computer system:
 
-1. **Address Bus**
-2. **Data Bus**
-3. **Control Bus**
+1. Address Bus
+2. Data Bus
+3. Control Bus
 
 ---
 
@@ -29,10 +29,10 @@ There are **three major types** of buses in a computer system:
 ### Definition
 The Address Bus carries the address of the memory location where data will be read from or written to.
 
-**Key Function:** "Where should the data go?"
+Key Function: "Where should the data go?"
 
 ### Direction: Unidirectional
-- Data flows **only from CPU** to memory or I/O devices
+- Data flows only from CPU to memory or I/O devices
 - The CPU sends addresses; memory does not send addresses back
 
 ### Example
@@ -47,7 +47,7 @@ Suppose the CPU wants data from memory location `450`:
 | n bits           | 2^n                      |
 | 12-bit (example) | 2^12 = 4,096             |
 
-**Example:** With a 12-bit address bus, 4,096 memory locations can be addressed.
+Example: With a 12-bit address bus, 4,096 memory locations can be addressed.
 
 ### Main Functions of Address Bus
 ✓ Carries memory addresses  
@@ -61,10 +61,10 @@ Suppose the CPU wants data from memory location `450`:
 ### Definition
 The Data Bus carries the actual data between CPU, memory, and input/output devices.
 
-**Key Function:** "What data is being transferred?"
+Key Function: "What data is being transferred?"
 
 ### Direction: Bidirectional
-- Data can move **in both directions**
+- Data can move in both directions
 - Memory ↔ CPU
 - Examples: Memory → CPU, CPU → Memory
 
@@ -77,7 +77,7 @@ Suppose memory location `450` contains value `25`:
 
 ### Data Bus Size
 
-The size of the data bus determines how much data can transfer **at one time**.
+The size of the data bus determines how much data can transfer at one time.
 
 | Data Bus Example | Transfer Capacity |
 |------------------|-------------------|
@@ -93,16 +93,16 @@ The size of the data bus determines how much data can transfer **at one time**.
 ## 3. Control Bus
 
 ### Definition
-The Control Bus carries **control signals** and **timing signals** between components.
+The Control Bus carries control signals and timing signals between components.
 
-**Key Function:** "What operation should happen?"
+Key Function: "What operation should happen?"
 
 ### Common Control Signals
-- **Read** – Reads data from memory
-- **Write** – Writes data into memory
-- **Interrupt** – Requests CPU attention
-- **Clock** – Synchronizes operations
-- **Reset** – Restarts system
+- Read – Reads data from memory
+- Write – Writes data into memory
+- Interrupt – Requests CPU attention
+- Clock – Synchronizes operations
+- Reset – Restarts system
 
 ### Direction: Mostly Bidirectional
 - Both CPU and devices may send control signals
@@ -129,7 +129,7 @@ Suppose CPU wants to read data:
 ## Combined Working of All Buses
 
 ### Example: CPU Executes LOAD 450
-**Meaning:** Load data from memory location 450.
+Meaning: Load data from memory location 450.
 
 ### Step-by-Step Operation
 
@@ -159,16 +159,16 @@ Suppose CPU wants to read data:
 
 | Feature    | Address Bus      | Data Bus         | Control Bus              |
 |----------|-----------------|------------------|--------------------------|
-| **Purpose** | Carries address | Carries data     | Carries control signals  |
-| **Direction** | Unidirectional  | Bidirectional    | Bidirectional            |
-| **Used For** | Selecting location | Transferring data | Managing operations      |
+| Purpose | Carries address | Carries data     | Carries control signals  |
+| Direction | Unidirectional  | Bidirectional    | Bidirectional            |
+| Used For | Selecting location | Transferring data | Managing operations      |
 
 ---
 
 ## Key Takeaways
 
-1. **Address Bus** determines **memory capacity**
-2. **Data Bus** determines **transfer speed**
-3. **Control Bus** manages **communication and synchronization**
+1. Address Bus determines memory capacity
+2. Data Bus determines transfer speed
+3. Control Bus manages communication and synchronization
 
-**Important:** All three buses work together for successful communication inside a computer system.
+Important: All three buses work together for successful communication inside a computer system.

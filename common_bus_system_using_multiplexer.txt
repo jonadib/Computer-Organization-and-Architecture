@@ -1,0 +1,214 @@
+
+## Introduction
+
+In Computer Organization and Architecture, a **common bus system** is used to transfer data between different registers inside the CPU using a shared communication path called a bus.
+
+One important method of building a common bus system is by using **multiplexers (MUX)**.
+
+---
+
+## Why Common Bus System is Needed
+
+### The Problem: Too Many Wires
+
+Suppose a computer contains several registers:
+
+| Register | Full Name | Purpose |
+|----------|-----------|---------|
+| AR | Address Register | Stores memory addresses |
+| PC | Program Counter | Points to next instruction |
+| DR | Data Register | Holds data from memory |
+| AC | Accumulator | Arithmetic operations storage |
+| IR | Instruction Register | Stores current instruction |
+| TR | Temporary Register | Temporary data storage |
+
+If every register were connected directly to every other register, the number of wires would become **extremely large and complicated**.
+
+### The Solution: Common Bus
+
+To reduce hardware complexity, a common bus is used:
+- One shared bus is created instead of many separate connections
+- Registers send data through that bus
+- Only one register transmits at a time
+- Multiple registers can receive from the bus
+
+---
+## What is a Multiplexer?
+
+### Definition
+A **Multiplexer (MUX)** is a digital circuit that selects one input from many inputs and sends it to the output.
+
+**Simple Analogy:** "One selector choosing one road from many roads."
+
+### Function
+- Accepts multiple data inputs
+- Uses selection lines to choose which input
+- Outputs the selected input data
+
+---
+
+## Basic Idea: Common Bus Using MUX
+
+### How It Works
+
+All register outputs are connected to multiplexers. The multiplexers select which register's data will appear on the common bus. Then the selected data is transferred to another register.
+
+### Key Concept
+- Only **one register at a time** can place data onto the bus
+- Multiplexers control which register is selected
+- Other registers can load the selected data
+
+---
+
+## Example System
+
+### Registers and Data
+
+Suppose there are four 4-bit registers:
+- **R0, R1, R2, R3**
+
+**Objective:** Only one register at a time places data onto the bus.
+
+### Structure
+
+For a 4-bit bus:
+
+| Component | Details |
+|-----------|---------|
+| **Bus Width** | 4 bits |
+| **Number of MUX** | 4 (one per bit position) |
+| **MUX Type** | 4-to-1 multiplexer |
+| **Number of Registers** | 4 (R0, R1, R2, R3) |
+| **Selection Lines Needed** | log₂(4) = 2 lines |
+
+
+### Example Data
+
+| Register | Data |
+|----------|------|
+| R0       | 1010 |
+| R1       | 1100 |
+| R2       | 0111 |
+| R3       | 1001 |
+
+---
+
+## Selection Lines
+
+### How Many Are Needed?
+
+For **n registers**, the number of selection lines required is:
+
+**log₂(n)**
+
+### Example: 4 Registers
+
+- Number of selection lines = log₂(4) = **2 selection lines**
+- Let selection lines be: **S₁, S₀**
+
+### Selection Table
+
+| S₁ | S₀ | Selected Register |
+|----|----|--------------------|
+| 0  | 0  | R0                 |
+| 0  | 1  | R1                 |
+| 1  | 0  | R2                 |
+| 1  | 1  | R3                 |
+
+---
+
+
+## Example Operation
+
+### Scenario 1: Placing R2 on Bus
+
+Suppose:
+- R2 = `0111`
+- Selection lines: S₁S₀ = `10`
+
+**Result:**
+- Multiplexers select **R2**
+- Bus becomes: **BUS = 0111**
+- Another register can now load this data
+
+### Scenario 2: Data Transfer R1 ← Bus
+
+After placing R2 on the bus:
+- Enable load signal for **R1**
+- R1 receives the bus data
+- Result: **R1 = 0111**
+
+---
+
+## Step-by-Step Data Transfer Example
+
+### Objective: R1 ← R3 (Transfer R3 data to R1)
+
+Given: R3 = `1001`
+
+### Step 1: Select R3
+
+- Set selection lines: **S₁S₀ = 11**
+- MUX selects **R3**
+- Bus now contains: **1001**
+
+### Step 2: Enable Load for R1
+
+- Activate the **load signal for R1**
+- R1 is ready to receive data from bus
+
+
+### Step 3: Transfer Complete
+
+- R1 now contains: **R1 = 1001** ✓
+
+---
+
+## Selection Lines Formula
+
+### General Formula
+
+For **n registers**:
+
+**Number of selection lines = log₂(n)**
+
+### Examples
+
+| Number of Registers | Selection Lines Required |
+|-------------------|------------------------|
+| 4 registers       | log₂(4) = 2            |
+| 8 registers       | log₂(8) = 3            |
+| 16 registers      | log₂(16) = 4           |
+| 32 registers      | log₂(32) = 5           |
+
+---
+
+## Advantages & Disadvantages
+
+| **Advantages ✓** | **Disadvantages ✗** |
+|---|---|
+| **Reduces Hardware Connections** - Fewer wires needed vs direct connections, simpler layout | **Hardware Cost Increases** - Large systems need many multiplexers and control circuitry |
+| **Simplifies Register Transfer** - Organized control, easy to specify source/destination | **Only One Transfer at a Time** - Single register uses bus, reduces parallel capability |
+| **Faster Communication** - Efficient transfer through shared bus with optimized data flow | **Increased Complexity** - Complex control logic with timing/synchronization challenges |
+| **Easy Control** - Selection lines manage all transfers with straightforward logic | |
+
+---
+
+## Summary Components
+
+| Component | Function |
+|-----------|----------|
+| **Bus** | Shared path for data transfer between registers |
+| **Multiplexer** | Selects one register output from multiple inputs |
+| **Selection Lines** | Control which register is selected |
+| **Load Signal** | Determines which register receives data |
+
+---
+
+## Key Concept
+
+**A common bus system using multiplexers allows multiple registers to share a single communication path efficiently.**
+
+The multiplexers decide: **"Which register can place data on the bus right now?"**
+
+This approach balances hardware efficiency with functional complexity, making it a fundamental architecture in modern CPU design.
