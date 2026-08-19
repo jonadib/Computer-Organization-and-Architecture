@@ -133,11 +133,11 @@ Meaning: Load data from memory location 450.
 
 ### Step-by-Step Operation
 
-| Step | Bus Used     | Operation                        |
-|------|------------|--------------------------------|
-| 1    | Address Bus | CPU sends `450` to specify location |
-| 2    | Control Bus | CPU sends `READ` signal        |
-| 3    | Data Bus   | Memory sends data `25` back    |
+| Step | Bus Used    | Operation                            |
+|------|-------------|--------------------------------------|
+| 1    | Address Bus | CPU sends `450` to specify location  |
+| 2    | Control Bus | CPU sends `READ` signal              |
+| 3    | Data Bus    | Memory sends data `25` back          |
 
 ### Final Result
 - CPU receives: `25`
@@ -157,11 +157,11 @@ Meaning: Load data from memory location 450.
 
 ## Comparison Table: All Three Buses
 
-| Feature    | Address Bus      | Data Bus         | Control Bus              |
-|----------|-----------------|------------------|--------------------------|
-| Purpose | Carries address | Carries data     | Carries control signals  |
-| Direction | Unidirectional  | Bidirectional    | Bidirectional            |
-| Used For | Selecting location | Transferring data | Managing operations      |
+| Feature  | Address Bus        | Data Bus         | Control Bus              |
+|----------|--------------------|------------------|--------------------------|
+| Purpose  | Carries address    | Carries data     | Carries control signals  |
+| Direction| Unidirectional     | Bidirectional    | Bidirectional            |
+| Used For | Selecting location | Transferring data| Managing operations      |
 
 ---
 

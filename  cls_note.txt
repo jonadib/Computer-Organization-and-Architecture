@@ -1,2 +1,9 @@
-page- 304 ( figure 5.1)
-page - 305 ( figure 5.2 )
+Date :- 7/7/26
+---------------
+page- 304 ( figure 5.1 )
+page- 305 ( figure 5.2 )
+page - 308 ( Hardware Control )
+page - 313 ( GCD figure - 5.9 )
+
+
+

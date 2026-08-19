@@ -12,8 +12,8 @@ An interrupt is a signal that temporarily stops the current execution of the CPU
 * **In 8085:** The hardware interrupts are (ordered by priority):
   
   | Interrupt | Priority |
-  | :--- | :--- |
-  | TRAP | Highest |
+  | :---    | :---    |
+  | TRAP    | Highest |
   | RST 7.5 | 2nd |
   | RST 6.5 | 3rd |
   | RST 5.5 | 4th |
