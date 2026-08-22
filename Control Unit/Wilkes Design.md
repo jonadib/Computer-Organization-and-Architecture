@@ -1,0 +1,334 @@
+This is a very important historical concept in microprogrammed control.
+ 
+**Who?** M. V. Wilkes
+**When?** 1951
+ 
+He introduced an early practical concept of microprogrammed control.
+ 
+---
+ 
+## 14. Basic Idea of Wilkes Design
+ 
+Instead of creating a huge collection of complicated wires, control information is organized in a matrix. Think of it like a table:
+ 
+```
+              Control Signals
+             ↓  ↓  ↓  ↓  ↓
+         ┌─────────────────────┐
+Row 1 →  │ ●     ●       ●     │
+Row 2 →  │   ● ●       ●       │
+Row 3 →  │ ●   ●   ●           │
+Row 4 →  │     ●   ●     ●     │
+         └─────────────────────┘
+```
+ 
+A selected row generates the required control signals.
+ 
+---
+ 
+## 15. Wilkes Diode Matrix
+ 
+Wilkes used a diode matrix. Very simply:
+ 
+```
+            Control Signals
+               ↓ ↓ ↓ ↓
+          ┌───────────────┐
+Row 1 ───►│ ●   ●     ●   │
+Row 2 ───►│   ● ●   ●     │
+Row 3 ───►│ ●     ●   ●   │
+          └───────────────┘
+```
+ 
+A dot represents the presence of a diode. When a particular row is activated, the diodes in that row generate the required control signals.
+ 
+---
+ 
+## 16. Two Parts of a Wilkes Microinstruction
+ 
+A row essentially contains two types of information:
+ 
+```
+┌──────────────────────┬─────────────────────┐
+│   Control Signals    │   Next Address      │
+└──────────────────────┴─────────────────────┘
+```
+ 
+**Part 1 — Control signals**: Tell the CPU what to do now.
+ 
+```
+R1out
+Yin
+ALU_ADD
+Zin
+```
+ 
+**Part 2 — Next address**: Tells the control unit which microinstruction should be executed next.
+ 
+---
+ 
+## 17. Conditional Branching in Wilkes Design
+ 
+Sometimes the next microinstruction depends on a condition.
+ 
+```
+IF Zero = 1
+    → Address A
+ELSE
+    → Address B
+```
+ 
+Diagram:
+ 
+```
+                    Condition
+                       │
+              ┌────────┴────────┐
+              ↓                 ↓
+          Address A          Address B
+```
+ 
+This allows the microprogram to make decisions.
+## 18. Control Signals for SUB A,B
+ 
+Now let's understand the most practical part.
+ 
+Suppose `SUB A,B` means:
+ 
+$$A = A - B$$
+ 
+We use: Internal bus, Y register, Z register, ALU, Complementer.
+ 
+---
+ 
+## 19. Step 1 — Put B into Y
+ 
+We need to save B temporarily.
+ 
+**Micro-operation:** `Y ← B`
+ 
+**Control signals:**
+ 
+```
+Bout = 1
+Yin  = 1
+```
+ 
+Diagram:
+ 
+```
+B
+│
+│ Bout
+▼
+BUS
+│
+│ Yin
+▼
+Y
+```
+ 
+---
+ 
+## 20. Step 2 — Perform A − Y
+ 
+We want:
+ 
+$$Z = A - Y$$
+ 
+But the ALU can perform addition only, so:
+ 
+$$A - Y = A + \overline{Y} + 1$$
+ 
+The complementer creates the two's complement of Y.
+ 
+**Control signals:**
+ 
+```
+Aout
+Complement Y
+ALU = ADD
+Zin
+```
+ 
+Diagram:
+ 
+```
+              ┌─────────────┐
+A ───────────►│             │
+              │     ALU     │────► Z
+Y ──► 2's ───►│    ADD      │
+     complement             │
+              └─────────────┘
+```
+ 
+Therefore: $Z = A - Y$
+ 
+---
+ 
+## 21. Step 3 — Put Z into A
+ 
+**Micro-operation:** `A ← Z`
+ 
+**Control signals:**
+ 
+```
+Zout = 1
+Ain  = 1
+```
+ 
+Diagram:
+ 
+```
+Z
+│
+│ Zout
+▼
+BUS
+│
+│ Ain
+▼
+A
+```
+ 
+---
+ 
+## ⭐ Complete SUB A,B Sequence
+ 
+```
+             SUB A,B
+                │
+                ▼
+      ┌──────────────────┐
+ t1   │ Y ← B            │
+      │ Bout, Yin        │
+      └────────┬─────────┘
+               ↓
+      ┌──────────────────┐
+ t2   │ Z ← A − Y        │
+      │ Aout             │
+      │ Complement Y     │
+      │ ALU = ADD        │
+      │ Zin              │
+      └────────┬─────────┘
+               ↓
+      ┌──────────────────┐
+ t3   │ A ← Z            │
+      │ Zout, Ain        │
+      └──────────────────┘
+```
+ 
+So: **B → Y → A−Y → Z → A**
+ 
+---
+ 
+## 22. Why Use a Complementer for SUB?
+ 
+The ALU doesn't necessarily need a separate subtraction circuit. It can use:
+ 
+$$A - B = A + (\text{2's complement of } B)$$
+ 
+For example:
+ 
+$$10 - 3 = 10 + (-3) = 7$$
+ 
+So the control unit says:
+ 
+```
+Complementer = ON
+ALU = ADD
+```
+ 
+and subtraction is achieved.
+ 
+---
+ 
+## 🎯 Very Important Exam Questions
+ 
+**Q1. What is a control unit?**
+ 
+> The control unit is the part of the CPU that generates control signals and sequences micro-operations required to execute instructions.
+ 
+**Q2. Hardwired vs Microprogrammed?**
+ 
+```
+Hardwired
+= Fast
+= Hardware logic
+= Difficult to modify
+ 
+Microprogrammed
+= Flexible
+= Control memory
+= Easier to modify
+```
+ 
+**Q3. What is the one-hot method?**
+ 
+> Each state has a separate flip-flop, and only one flip-flop is active at a time.
+ 
+**Q4. What is Wilkes design?**
+ 
+> Wilkes design is an early microprogrammed control technique using a diode matrix in which each row represents a microinstruction containing control signals and information for selecting the next microinstruction.
+ 
+**Q5. What are control signals?**
+ 
+> Control signals are binary signals generated by the control unit to control registers, ALU, buses and memory during instruction execution.
+ 
+**Q6. SUB A,B — memorize:**
+ 
+$$t_1: Y \leftarrow B \qquad t_2: Z \leftarrow A - Y \qquad t_3: A \leftarrow Z$$
+ 
+```
+t1 → Bout, Yin
+t2 → Aout, Complement, ADD, Zin
+t3 → Zout, Ain
+```
+ 
+---
+ 
+## 🧠 One-Page Memory Map
+ 
+```
+                 CONTROL UNIT
+                       │
+             Generates control signals
+                       │
+          ┌────────────┴────────────┐
+          │                         │
+     HARDWIRED                MICROPROGRAMMED
+          │                         │
+     Logic gates                Control memory
+     Fast                       Flexible
+     Hard to modify             Easy to modify
+ 
+ 
+              STATE CONTROL
+                   │
+          ┌────────┴────────┐
+          │                 │
+       Binary            One-Hot
+     fewer FFs          one FF/state
+     decoder            simple logic
+ 
+ 
+             WILKES DESIGN
+                   │
+              Diode Matrix
+                   │
+        ┌──────────┴──────────┐
+        │                     │
+ Control Signals          Next Address
+ 
+ 
+              SUB A,B
+                   │
+             B → Y
+                   ↓
+          A − Y → Z
+                   ↓
+              Z → A
+```
+ 
+**The core idea to remember:** the Control Unit doesn't do the actual calculation. The ALU does the calculation; the Control Unit orchestrates everything by sending the right control signals at the right time.
+ 
