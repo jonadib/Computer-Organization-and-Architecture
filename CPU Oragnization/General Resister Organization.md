@@ -1,35 +1,68 @@
-# General Register-Based CPU
+# General Register-Based CPU Organization
 
-In a general register-based CPU, the processor replaces the single-accumulator layout with a collection of high-speed, general-purpose registers ($R_1, R_2, \dots, R_n$). Any of these registers can serve as a source or destination for arithmetic, logical, and data-transfer operations, significantly reducing the need to read from or write to main memory during computation.
+General Register-Based CPU Organization, uses multiple general-purpose registers instead of a single accumulator.
 
-## Key Characteristics & Operations
+Earlier systems relied on the accumulator for temporary data storage during instruction execution.
 
-- **Multiple Operands:** Unlike single-accumulator machines that implicitly use one specific register, register-based CPUs allow instructions to explicitly state multiple registers.
+As programs became more complex, multiple registers proved more efficient by reducing memory access, increasing execution speed, and lowering instruction count.
 
-## Instruction Formats
+## Basic Concepts and Instruction Format
 
-- **Two-Address Instructions:** Specify two operands, where one register acts as both a source and a destination.
+Each instruction in this organization typically includes two or three address fields. These address fields specify:
 
-	Example: `ADD R1, R2` — $R_1 \leftarrow R_1 + R_2$
+* **The source operands:** data to be processed
+* **The destination operand:** where the result will be stored
+* **The opcode:** operation to be performed
 
-- **Three-Address Instructions:** Explicitly specify two source operands and one destination operand.
+Any register can be used as a source or destination, making programs shorter and faster.
 
-	Example: `MULT R1, R2, R3` — $R_1 \leftarrow R_2 \times R_3$
+## Three-Address Instruction Format
 
-## Operation Types
+A three-address instruction explicitly specifies two source operands and one destination operand:
 
-### Data Transfer Operation
+![alt text](image-1.png)
 
-Moves data directly between registers or between a register and main memory.
+1
 
-- Example: `LOAD R1, X` — Loads content from memory location $X$ into register $R_1$.
-- Example: `MOVE R2, R1` — Copies content from $R_1$ into $R_2$.
+For example:
 
-### ALU Operation
+```text
+MULT R1, R2, R3   ;    R1 ← R2 × R3
+```
 
-Performs arithmetic or logical operations directly using the data stored inside the specified registers.
+R2 and R3 contain the operands.
 
-- Example: `SUB R1, R2, R3` — Operation: $R_1 \leftarrow R_2 - R_3$ (subtracts $R_3$ from $R_2$ and stores the result in $R_1$).
+The result of R2 × R3 is stored in R1.
+
+This format:
+
+* Reduces the number of instructions,
+* Enables direct computation without overwriting source operands,
+* Is widely used in register-register architectures with a larger register file.
+
+## Two-Address Instruction Format
+
+A two-address instruction specifies one source and one destination, but one of them also serves as both source and destination:
+
+![alt text](image-2.png)
+
+1
+
+For example:
+
+```text
+MULT R1, R2   ;    R1 ← R1 × R2
+```
+
+R1 and R2 contains operands.
+
+The result of R1 x R2 is stored in R1 itself.
+
+This format:
+
+* Uses fewer bits per instruction,
+* Saves instruction space,
+* May require more instructions in a program since one source operand gets overwritten.
 
 ## Advantages
 

@@ -130,7 +130,7 @@ Suppose:
 - Multiplexers select **R2**
 - Bus becomes: **BUS = 0111**
 - Another register can now load this data
-
+    
 ### Scenario 2: Data Transfer R1 ← Bus
 
 After placing R2 on the bus:
