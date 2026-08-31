@@ -1,55 +1,27 @@
 # Performance Metrics — Easy Exam Notes
 
-These are used to **measure how fast and efficient a computer/CPU is**.
-
-The most important metrics are:
-
-1. **Clock Speed**
-2. **CPI**
-3. **Execution Time**
-4. **MIPS**
-5. **Latency**
-6. **Throughput**
-
----
+Performance metrics are used to **measure how fast and efficient a computer/CPU is**.
 
 ## 1. Clock Speed
 
-Clock speed tells us **how many clock cycles the CPU performs per second**.
+**Clock Speed** tells us how many clock cycles the CPU performs per second.
 
-It is measured in:
+Measured in:
 
-* **Hz**
+* **Hz** = cycles/second
 * **MHz** = million cycles/second
 * **GHz** = billion cycles/second
 
-### Example
+**Example:**
+3 GHz = **3 billion clock cycles per second**
 
-If CPU clock speed = **3 GHz**
-
-Using:
-
-**1 GHz = 10⁹ Hz**
-
-Therefore:
-
-**3 GHz = 3 × 10⁹ Hz**
-
-So the CPU has:
-
-> **3 billion clock cycles per second.**
-
-### Important
-
-Higher clock speed **generally** means faster processing, but it does **not always mean a faster CPU** because CPI, architecture, memory, etc. also matter.
+**Remember:** Higher clock speed generally means faster processing, but it does not always mean a faster CPU because CPI, architecture, memory, etc. also matter.
 
 ---
 
 ## 2. CPI — Cycles Per Instruction
 
-**CPI = Cycles Per Instruction**
-
-It tells us:
+CPI tells us:
 
 > **How many clock cycles are needed on average to execute one instruction.**
 
@@ -57,28 +29,16 @@ It tells us:
 
 **CPI = Total Clock Cycles / Instruction Count**
 
-### Example
+**Example:**
 
-Suppose:
+* Instructions = 100
+* Clock cycles = 200
 
-* Instruction Count = **100**
-* Total Clock Cycles = **200**
+CPI = 200 / 100 = **2**
 
-Using the formula:
+So, each instruction takes an average of **2 clock cycles**.
 
-**CPI = Total Clock Cycles / Instruction Count**
-
-**CPI = 200 / 100**
-
-**CPI = 2**
-
-So:
-
-> Each instruction takes an average of **2 clock cycles**.
-
-### Important
-
-**Lower CPI = Better performance**, assuming other factors are comparable.
+**Remember:** Lower CPI = better performance, assuming other factors are comparable.
 
 ---
 
@@ -88,49 +48,20 @@ Execution time means:
 
 > **The total time required by the CPU to execute a program.**
 
-This is one of the **most important performance formulas**.
-
 ### Formula
 
-**CPU Time = Instruction Count × CPI × Clock Cycle Time**
-
-Since:
-
-**Clock Cycle Time = 1 / Clock Rate**
-
-Therefore:
-
 **CPU Time = (Instruction Count × CPI) / Clock Rate**
 
-### Example
+**Example:**
 
-Suppose:
+* Instruction count = 1,000,000
+* CPI = 2
+* Clock rate = 2 GHz
 
-* Instruction Count = **1,000,000**
-* CPI = **2**
-* Clock Rate = **2 GHz**
+CPU Time = (1,000,000 × 2) / (2 × 10⁹)
+= **0.001 seconds = 1 ms**
 
-First convert the clock rate:
-
-**2 GHz = 2 × 10⁹ Hz**
-
-Using the formula:
-
-**CPU Time = (Instruction Count × CPI) / Clock Rate**
-
-**CPU Time = (1,000,000 × 2) / (2 × 10⁹)**
-
-**CPU Time = 2,000,000 / 2,000,000,000**
-
-**CPU Time = 0.001 seconds**
-
-Therefore:
-
-> **Execution Time = 1 ms**
-
-### Remember
-
-To make execution time smaller:
+### To reduce execution time:
 
 * Reduce instruction count
 * Reduce CPI
@@ -144,38 +75,24 @@ MIPS means:
 
 > **Million Instructions Per Second**
 
-It tells us approximately how many **millions of instructions** a processor executes per second.
+It tells us approximately how many millions of instructions a processor executes per second.
 
 ### Formula
 
 **MIPS = Clock Rate / (CPI × 10⁶)**
 
-If clock rate is expressed in MHz:
+If clock rate is in MHz:
 
 **MIPS = Clock Rate (MHz) / CPI**
 
-### Example
+**Example:**
 
-Suppose:
+* Clock rate = 2 GHz = 2000 MHz
+* CPI = 2
 
-* Clock Rate = **2 GHz**
-* CPI = **2**
+MIPS = 2000 / 2 = **1000 MIPS**
 
-First convert GHz to MHz:
-
-**2 GHz = 2000 MHz**
-
-Using the formula:
-
-**MIPS = Clock Rate (MHz) / CPI**
-
-**MIPS = 2000 / 2**
-
-**MIPS = 1000**
-
-Therefore:
-
-> **MIPS = 1000 million instructions per second**
+So the CPU executes approximately **1000 million instructions/second**.
 
 ---
 
@@ -185,31 +102,12 @@ Latency means:
 
 > **The time required to complete one operation or respond to one request.**
 
-Think:
-
-**"How long do I have to wait for one task?"**
-
-### Example
-
-Suppose a memory request takes:
-
-**100 ns**
-
-Therefore:
-
-> **Latency = 100 ns**
-
-### Simple Example
-
-You click:
-
-**Open file → 0.5 seconds → file opens**
-
-The **0.5 seconds** is the latency.
-
-### Remember
+**Remember:**
 
 > **Latency = Time for one task**
+
+**Example:**
+A memory request takes 100 ns → latency = **100 ns**
 
 ---
 
@@ -219,35 +117,16 @@ Throughput means:
 
 > **How much work can be completed in a given amount of time.**
 
-Think:
+**Remember:**
 
-**"How many tasks can I complete per second?"**
+> **Throughput = Work completed per unit time**
 
-### Example
-
-A server processes:
-
-**10,000 requests/second**
-
-Therefore:
-
-> **Throughput = 10,000 requests/s**
-
-Another example:
-
-Factory A produces **100 products/hour**.
-
-Factory B produces **200 products/hour**.
-
-Therefore:
-
-> **Factory B has higher throughput.**
+**Example:**
+A server processes 10,000 requests/second → throughput = **10,000 requests/s**
 
 ---
 
-# ⭐ Latency vs Throughput
-
-This is very important.
+## ⭐ Latency vs Throughput
 
 | Latency                         | Throughput                             |
 | ------------------------------- | -------------------------------------- |
@@ -264,7 +143,7 @@ This is very important.
 
 ---
 
-# 🔥 All Metrics Together
+# ⭐ All Metrics Together
 
 | Metric             | Meaning                   | Better Performance      |
 | ------------------ | ------------------------- | ----------------------- |
@@ -301,82 +180,45 @@ This is very important.
 
 Suppose a CPU has:
 
-* Clock Speed = **2 GHz**
-* Instruction Count = **1 billion**
+* Clock speed = **2 GHz**
+* Instruction count = **1 billion**
 * CPI = **2**
 
-### Step 1: Convert Clock Speed
+### Execution Time
 
-**2 GHz = 2 × 10⁹ Hz**
+T = (1 × 10⁹ × 2) / (2 × 10⁹)
 
-### Step 2: Calculate Execution Time
+T = **1 second**
 
-Using:
+### MIPS
 
-**CPU Time = (Instruction Count × CPI) / Clock Rate**
+MIPS = 2000 / 2
 
-Substitute the values:
+MIPS = **1000 MIPS**
 
-**CPU Time = (1 × 10⁹ × 2) / (2 × 10⁹)**
+So this CPU executes approximately:
 
-**CPU Time = 2 × 10⁹ / 2 × 10⁹**
-
-**CPU Time = 1 second**
-
-Therefore:
-
-> **Execution Time = 1 second**
-
-### Step 3: Calculate MIPS
-
-First convert:
-
-**2 GHz = 2000 MHz**
-
-Using:
-
-**MIPS = Clock Rate (MHz) / CPI**
-
-Substitute the values:
-
-**MIPS = 2000 / 2**
-
-**MIPS = 1000**
-
-Therefore:
-
-> **MIPS = 1000 million instructions per second**
+> **1000 million instructions per second**
 
 ---
 
-# 🎯 Important Exam Points
-
-Remember:
+# 🎯 Exam Shortcut
 
 **Execution Time = (Instruction Count × CPI) / Clock Rate**
 
-> **Higher clock rate → Lower execution time**
+Remember:
 
-> **Lower CPI → Lower execution time**
+* **Higher clock rate → lower execution time**
+* **Lower CPI → lower execution time**
+* **Lower latency → faster individual response**
+* **Higher throughput → more work per second**
+* **MIPS → million instructions per second**
 
-> **Lower latency → Faster individual response**
+## 🧠 Easiest Way to Remember All Six
 
-> **Higher throughput → More work per second**
-
-> **MIPS → Million instructions per second**
-
----
-
-# 🧩 Easiest Way to Remember All Six
-
-**Clock Speed → How fast the clock runs**
-
-**CPI → How many cycles/instruction**
-
-**Execution Time → How long the program takes**
-
-**MIPS → How many million instructions/second**
-
-**Latency → How long one task takes**
-
-**Throughput → How much work per second**
+* **Clock Speed →** How fast the clock runs
+* **CPI →** How many cycles/instruction
+* **Execution Time →** How long the program takes
+* **MIPS →** How many million instructions/second
+* **Latency →** How long one task takes
+* **Throughput →** How much work per second

@@ -134,6 +134,18 @@ They hold the result of one stage while the next stage works. Pipeline registers
 
 ---
 
+## Performance Evolution Factor for Pipelining
+-  Latency:
+Latency is the time taken for a single instruction to complete its execution.
+A lower latency indicates better performance.
+- Efficiency:
+Pipeline efficiency measures how effectively the pipeline stages are
+utilized. It is calculated by dividing the total time spent on useful work by
+the total time taken for the entire pipeline.
+- Throughput :
+Throughput refers to the number of instructions completed per unit of time.
+In a pipeline processor, a higher throughput indicates better performance
+
 ## 5. Pipeline Performance
 
 Three important performance terms:
